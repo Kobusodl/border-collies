@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Willow Ridge Border Collies</title>
-  <meta name="description" content="Elegant one-page kennel website template for a Border Collie breeder. Built as a static site for GitHub Pages." />
+  <title>DeBeer Collies &amp; Chocolate Pups</title>
+  <meta
+    name="description"
+    content="Elegant one-page kennel website for DeBeer Collies & Chocolate Pups, featuring Border Collies and Australian Shepherds."
+  />
   <meta name="theme-color" content="#efe7dc" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #f7f2eb;
       --bg-2: #efe7dc;
-      --card: rgba(255,255,255,0.62);
+      --card: rgba(255,255,255,0.68);
       --text: #23314a;
       --muted: #6a6f7a;
       --line: rgba(35,49,74,0.12);
@@ -48,9 +52,7 @@
       margin: 0 auto;
     }
 
-    .section {
-      padding: 5.5rem 0;
-    }
+    .section { padding: 5.5rem 0; }
 
     .eyebrow {
       display: inline-flex;
@@ -85,7 +87,7 @@
 
     .section-copy {
       margin: 0;
-      max-width: 62ch;
+      max-width: 66ch;
       color: var(--muted);
       font-size: 1.02rem;
     }
@@ -99,6 +101,7 @@
     }
 
     .header {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -115,7 +118,8 @@
     .brand {
       display: flex;
       flex-direction: column;
-      gap: .08rem;
+      gap: .1rem;
+      min-width: 0;
     }
 
     .brand strong {
@@ -135,8 +139,9 @@
     .nav {
       display: flex;
       align-items: center;
-      gap: .4rem;
+      gap: .35rem;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav a {
@@ -164,6 +169,7 @@
       border-radius: 50%;
       font-size: 1.15rem;
       cursor: pointer;
+      flex: 0 0 44px;
     }
 
     .hero {
@@ -177,9 +183,7 @@
       align-items: center;
     }
 
-    .hero-copy {
-      padding: 1rem 0;
-    }
+    .hero-copy { padding: 1rem 0; }
 
     .hero-copy p {
       margin: 0 0 1.7rem;
@@ -192,7 +196,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: .9rem;
-      margin-bottom: 1.45rem;
+      margin-bottom: 1.2rem;
     }
 
     .btn {
@@ -222,28 +226,21 @@
       color: var(--text);
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 1rem;
-      max-width: 560px;
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin-top: 1rem;
     }
 
-    .stat {
-      padding: 1rem 1rem 1.1rem;
-      border-radius: var(--radius-lg);
+    .hero-badges span {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .55rem .8rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.66);
       border: 1px solid rgba(35,49,74,0.08);
-      background: rgba(255,255,255,0.46);
-      box-shadow: 0 12px 35px rgba(35,49,74,0.05);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.35rem;
-      margin-bottom: .2rem;
-    }
-
-    .stat span {
       color: var(--muted);
       font-size: .92rem;
     }
@@ -288,6 +285,7 @@
       border-radius: 50%;
       background: rgba(255,255,255,0.28);
       filter: blur(10px);
+      pointer-events: none;
     }
 
     .photo-frame::before {
@@ -304,7 +302,8 @@
       left: -30px;
     }
 
-    .placeholder-dog {
+    .placeholder-dog,
+    .image-placeholder {
       width: min(88%, 430px);
       aspect-ratio: 4 / 5;
       border-radius: 28px;
@@ -314,6 +313,12 @@
         linear-gradient(180deg, #f7efe5 0%, #efdbc4 100%);
       border: 1px dashed rgba(35,49,74,0.15);
       box-shadow: inset 0 18px 50px rgba(255,255,255,0.45), 0 18px 40px rgba(35,49,74,0.08);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      z-index: 1;
     }
 
     .placeholder-dog .paw {
@@ -323,7 +328,8 @@
       opacity: .4;
     }
 
-    .placeholder-dog .label {
+    .placeholder-dog .label,
+    .image-placeholder .label {
       position: absolute;
       left: 18px;
       right: 18px;
@@ -334,6 +340,7 @@
       border: 1px solid rgba(35,49,74,0.08);
       font-weight: 600;
       font-size: .95rem;
+      color: var(--text);
     }
 
     .placeholder-dog svg {
@@ -343,32 +350,11 @@
       display: block;
     }
 
-    .hero-tag {
-      top: 1.2rem;
-      left: 0;
-      padding: 1rem 1rem 1rem 1.05rem;
-      width: min(250px, 72%);
-    }
-
-    .hero-tag strong,
-    .floating-note strong {
+    .image-placeholder small {
       display: block;
-      margin-bottom: .2rem;
-      font-size: .98rem;
-    }
-
-    .hero-tag span,
-    .floating-note span {
+      margin-top: .6rem;
+      font-size: .86rem;
       color: var(--muted);
-      font-size: .9rem;
-      line-height: 1.5;
-    }
-
-    .floating-note {
-      right: 0;
-      bottom: 0;
-      padding: 1rem 1rem 1rem 1.05rem;
-      width: min(270px, 74%);
     }
 
     .announcement {
@@ -397,70 +383,6 @@
       to { transform: translateX(-50%); }
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr 1.05fr 1fr;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .gallery-card {
-      min-height: 200px;
-      border-radius: 24px;
-      padding: 1rem;
-      background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.48));
-      border: 1px solid rgba(35,49,74,0.08);
-      box-shadow: 0 18px 40px rgba(35,49,74,0.06);
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 1rem;
-      position: relative;
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .gallery-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.72), transparent 24%),
-        linear-gradient(135deg, rgba(213,177,135,0.35), rgba(239,231,220,0.2));
-      z-index: -2;
-    }
-
-    .gallery-card::after {
-      content: "";
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      right: -35px;
-      top: -35px;
-      background: rgba(255,255,255,0.32);
-      filter: blur(6px);
-      z-index: -1;
-    }
-
-    .gallery-card:nth-child(1) { min-height: 300px; }
-    .gallery-card:nth-child(3) { min-height: 300px; }
-
-    .gallery-card .number {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 2.8rem;
-      line-height: 1;
-      font-weight: 600;
-    }
-
-    .gallery-card p {
-      margin: 0;
-      max-width: 18ch;
-      color: var(--muted);
-      font-size: .95rem;
-      line-height: 1.5;
-    }
-
     .split-grid {
       display: grid;
       grid-template-columns: 1.04fr .96fr;
@@ -470,11 +392,11 @@
 
     .visual-panel,
     .info-panel,
-    .dog-card,
-    .feature-card,
-    .testimonial-wrap,
     .contact-card,
-    .location-card {
+    .breed-card,
+    .logo-card,
+    .litter-card,
+    .quick-card {
       border-radius: var(--radius-xl);
       background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(255,255,255,0.5));
       border: 1px solid rgba(35,49,74,0.08);
@@ -483,7 +405,7 @@
 
     .visual-panel {
       padding: 1rem;
-      min-height: 580px;
+      min-height: 560px;
     }
 
     .visual-panel .photo-frame {
@@ -491,10 +413,6 @@
       background:
         radial-gradient(circle at 20% 20%, rgba(255,255,255,0.9), transparent 26%),
         linear-gradient(145deg, rgba(213,177,135,0.7), rgba(247,242,235,0.9));
-    }
-
-    .visual-panel .placeholder-dog {
-      width: min(82%, 420px);
     }
 
     .info-panel {
@@ -533,50 +451,116 @@
       margin-top: .1rem;
     }
 
-    .dogs-grid {
+    .logos-grid,
+    .quick-grid,
+    .litter-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 1.4rem;
+      gap: 1.2rem;
       margin-top: 2rem;
     }
 
-    .dog-card {
+    .logos-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .quick-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+
+    .logo-card,
+    .quick-card,
+    .litter-card {
+      padding: 1.35rem;
+    }
+
+    .logo-card .logo-frame {
+      min-height: 230px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(35,49,74,0.08);
+      background:
+        radial-gradient(circle at 22% 18%, rgba(255,255,255,0.88), transparent 22%),
+        linear-gradient(145deg, rgba(239,231,220,0.95), rgba(213,177,135,0.65));
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .logo-card h3,
+    .quick-card h3,
+    .breed-header h3,
+    .litter-card h3,
+    .contact-card h3 {
+      margin: 0 0 .4rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      line-height: .95;
+      font-weight: 600;
+    }
+
+    .logo-card p,
+    .quick-card p,
+    .breed-copy p,
+    .litter-card p,
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .quick-card {
+      min-height: 240px;
+      position: relative;
       overflow: hidden;
     }
 
-    .dog-photo {
+    .quick-card::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      right: -28px;
+      top: -28px;
+      background: rgba(255,255,255,0.28);
+      filter: blur(6px);
+    }
+
+    .quick-card .btn {
+      margin-top: 1rem;
+      width: fit-content;
+    }
+
+    .breed-section .section-head { margin-bottom: 2rem; }
+
+    .breed-layout {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 1.4rem;
+      align-items: stretch;
+    }
+
+    .breed-image {
       padding: 1rem;
-      border-bottom: 1px solid rgba(35,49,74,0.06);
+      min-height: 520px;
     }
 
-    .dog-photo .photo-frame {
-      min-height: 320px;
+    .breed-image .photo-frame {
+      height: 100%;
       background:
-        radial-gradient(circle at 25% 20%, rgba(255,255,255,0.85), transparent 25%),
-        linear-gradient(145deg, rgba(239,231,220,0.85), rgba(213,177,135,0.55));
+        radial-gradient(circle at 20% 16%, rgba(255,255,255,0.9), transparent 24%),
+        linear-gradient(145deg, rgba(213,177,135,0.68), rgba(247,242,235,0.92));
     }
 
-    .dog-body {
-      padding: 1.5rem 1.5rem 1.6rem;
+    .breed-copy {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .dog-top {
+    .breed-header {
       display: flex;
       align-items: start;
       justify-content: space-between;
       gap: 1rem;
       margin-bottom: .9rem;
-    }
-
-    .dog-top h3,
-    .feature-card h3,
-    .contact-card h3,
-    .location-card h3 {
-      margin: 0;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 2rem;
-      line-height: .95;
-      font-weight: 600;
     }
 
     .badge {
@@ -588,225 +572,121 @@
       white-space: nowrap;
     }
 
-    .dog-body p,
-    .feature-card p,
-    .location-card p,
-    .contact-card p,
-    .testimonial-quote,
-    .testimonial-role {
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin-top: 1.15rem;
+    }
+
+    .pill {
+      padding: .55rem .8rem;
+      border-radius: 999px;
+      background: rgba(35,49,74,0.05);
+      border: 1px solid rgba(35,49,74,0.08);
       color: var(--muted);
+      font-size: .9rem;
     }
 
-    .dog-meta {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: .8rem;
-      margin-top: 1.1rem;
-    }
+    .litter-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
 
-    .meta-chip {
-      padding: .9rem 1rem;
-      border-radius: 18px;
-      background: rgba(35,49,74,0.04);
-      border: 1px solid rgba(35,49,74,0.06);
-    }
+    .litter-card { min-height: 220px; }
 
-    .meta-chip span {
-      display: block;
-      font-size: .78rem;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      margin-bottom: .25rem;
-      color: var(--muted);
-    }
-
-    .meta-chip strong {
-      display: block;
-      font-size: .98rem;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 1.2rem;
-      margin-top: 2rem;
-    }
-
-    .feature-card {
-      padding: 1.55rem;
-      min-height: 260px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::after {
-      content: attr(data-step);
-      position: absolute;
-      right: 1rem;
-      bottom: .45rem;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 4rem;
-      line-height: 1;
-      color: rgba(35,49,74,0.07);
-    }
-
-    .feature-icon {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
+    .litter-card .top-note {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .45rem .7rem;
+      border-radius: 999px;
       background: rgba(213,177,135,0.22);
-      margin-bottom: 1rem;
-      font-size: 1.25rem;
+      color: var(--accent-deep);
+      font-size: .85rem;
+      margin-bottom: .85rem;
     }
 
-    .location-grid {
+    .breed-showcase {
       display: grid;
-      grid-template-columns: 1fr 1fr;
       gap: 1.4rem;
       margin-top: 2rem;
     }
 
-    .location-card,
-    .contact-card {
-      padding: 2rem;
-    }
-
-    .map-box {
-      min-height: 280px;
-      border-radius: 24px;
-      border: 1px dashed rgba(35,49,74,0.15);
-      background:
-        linear-gradient(135deg, rgba(213,177,135,0.22), rgba(255,255,255,0.4)),
-        repeating-linear-gradient(0deg, rgba(35,49,74,0.06) 0 1px, transparent 1px 28px),
-        repeating-linear-gradient(90deg, rgba(35,49,74,0.06) 0 1px, transparent 1px 28px);
+    .adult-dogs-grid,
+    .puppy-grid {
       display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 2rem;
-      color: var(--muted);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .map-pin {
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      background: rgba(35,49,74,0.1);
-      display: grid;
-      place-items: center;
-      font-size: 2rem;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    .testimonial-wrap {
-      margin-top: 2rem;
-      padding: 1.5rem;
-    }
-
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1rem;
-      align-items: center;
-    }
-
-    .testimonial-slide {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 1.3rem;
       align-items: stretch;
     }
 
-    .testimonial-photo {
-      min-height: 320px;
-      border-radius: 24px;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 22% 18%, rgba(255,255,255,0.88), transparent 22%),
-        linear-gradient(145deg, rgba(239,231,220,0.95), rgba(213,177,135,0.65));
+    .mini-dog-card,
+    .litter-feature,
+    .puppy-card {
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(255,255,255,0.5));
       border: 1px solid rgba(35,49,74,0.08);
-      display: grid;
-      place-items: center;
-      padding: 1rem;
+      box-shadow: 0 18px 50px rgba(35,49,74,0.06);
+      overflow: hidden;
     }
 
-    .testimonial-photo .placeholder-dog {
-      width: min(78%, 260px);
-      aspect-ratio: 4 / 4.5;
-    }
-
-    .testimonial-content {
-      padding: 1rem 0;
+    .mini-dog-card,
+    .puppy-card {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      height: 100%;
     }
 
-    .quote-mark {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 4rem;
-      line-height: .7;
-      color: rgba(35,49,74,0.18);
-      margin-bottom: .5rem;
+    .mini-dog-photo,
+    .puppy-photo {
+      padding: .8rem;
+      border-bottom: 1px solid rgba(35,49,74,0.06);
     }
 
-    .testimonial-quote {
-      font-size: 1.08rem;
-      margin: 0 0 1.2rem;
-      max-width: 40ch;
+    .mini-dog-photo .photo-frame,
+    .puppy-photo .photo-frame {
+      min-height: 0;
+      height: auto;
+      aspect-ratio: 4 / 5;
     }
 
-    .testimonial-name {
-      font-weight: 700;
-      margin: 0 0 .15rem;
+    .mini-dog-body,
+    .litter-feature,
+    .puppy-caption {
+      padding: 1rem 1.1rem 1.05rem;
     }
 
-    .testimonial-role {
-      margin: 0;
-      font-size: .95rem;
-    }
-
-    .slider-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 1px solid rgba(35,49,74,0.1);
-      background: rgba(255,255,255,0.68);
-      color: var(--text);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: .22s ease;
-    }
-
-    .slider-btn:hover {
-      background: var(--text);
-      color: #fff;
-    }
-
-    .slider-dots {
+    .mini-dog-top {
       display: flex;
-      justify-content: center;
-      gap: .45rem;
-      margin-top: 1rem;
+      align-items: start;
+      justify-content: space-between;
+      gap: .8rem;
+      margin-bottom: .45rem;
     }
 
-    .slider-dots button {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      border: 0;
-      background: rgba(35,49,74,0.16);
-      cursor: pointer;
-      padding: 0;
+    .mini-dog-top h3,
+    .litter-feature h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.65rem;
+      line-height: .95;
+      font-weight: 600;
     }
 
-    .slider-dots button.active {
-      background: var(--text);
-      transform: scale(1.12);
+    .mini-dog-body p,
+    .litter-feature p,
+    .puppy-caption {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .puppy-caption {
+      font-size: .9rem;
+    }
+
+    @media (max-width: 820px) {
+      .adult-dogs-grid,
+      .puppy-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .contact-grid {
@@ -829,22 +709,7 @@
         linear-gradient(145deg, rgba(213,177,135,0.68), rgba(247,242,235,0.92));
     }
 
-    .floating-contact {
-      position: absolute;
-      top: 1.2rem;
-      left: 1.2rem;
-      max-width: 290px;
-      padding: 1rem;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(35,49,74,0.08);
-      box-shadow: 0 18px 40px rgba(35,49,74,0.08);
-    }
-
-    .floating-contact strong {
-      display: block;
-      margin-bottom: .45rem;
-    }
+    .contact-card { padding: 2rem; }
 
     .contact-list {
       display: grid;
@@ -886,6 +751,56 @@
       word-break: break-word;
     }
 
+    .contact-primary-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .9rem;
+      margin-top: 1.1rem;
+    }
+
+    .contact-primary-actions .btn {
+      width: 100%;
+      min-height: 54px;
+    }
+
+    .contact-primary-actions .btn-secondary:hover,
+    .contact-primary-actions .btn-secondary:focus-visible {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+      outline: none;
+    }
+
+    .contact-social-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .9rem;
+      margin-top: .9rem;
+    }
+
+    .contact-social-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 50px;
+      padding: 0 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(35,49,74,0.1);
+      color: var(--text);
+      font-weight: 600;
+      transition: .22s ease;
+    }
+
+    .contact-social-actions a:hover,
+    .contact-social-actions a:focus-visible {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+      outline: none;
+    }
+
     .footer {
       padding: 1.8rem 0 2.2rem;
       border-top: 1px solid rgba(35,49,74,0.08);
@@ -919,20 +834,27 @@
       transform: translateY(0);
     }
 
-    .photo-frame img {
+    .photo-frame img,
+    .logo-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
       border-radius: inherit;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-frame img {
+      object-fit: contain;
+      background: rgba(255,255,255,0.1);
     }
 
     @media (max-width: 1050px) {
       .hero-grid,
       .split-grid,
-      .location-grid,
-      .contact-grid,
-      .testimonial-slide {
+      .breed-layout,
+      .contact-grid {
         grid-template-columns: 1fr;
       }
 
@@ -940,8 +862,9 @@
         min-height: 560px;
       }
 
-      .gallery-grid,
-      .features-grid {
+      .logos-grid,
+      .quick-grid,
+      .litter-grid {
         grid-template-columns: repeat(2, minmax(0,1fr));
       }
     }
@@ -988,34 +911,14 @@
         inset: 4.8rem 1rem 2.6rem 1rem;
       }
 
-      .gallery-grid,
-      .dogs-grid,
-      .features-grid,
-      .stats {
+      .logos-grid,
+      .quick-grid,
+      .litter-grid {
         grid-template-columns: 1fr;
-      }
-
-      .testimonial-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .testimonial-slide {
-        order: 2;
-      }
-
-      .slider-btn-group {
-        display: flex;
-        gap: .8rem;
-        justify-content: center;
-        order: 1;
-      }
-
-      .slider-btn-group .slider-btn {
-        position: static;
       }
 
       .contact-card,
-      .location-card,
+      .breed-copy,
       .info-panel {
         padding: 1.5rem;
       }
@@ -1040,16 +943,18 @@
         min-height: 460px;
       }
 
-      .hero-tag,
-      .floating-note {
-        width: calc(100% - 1rem);
+      .photo-card-main {
+        inset: 4rem .8rem 2.2rem .8rem;
       }
 
-      .floating-contact {
-        top: 1rem;
-        left: 1rem;
-        right: 1rem;
-        max-width: none;
+      .hero-badges span,
+      .pill {
+        width: 100%;
+      }
+
+      .contact-actions .btn,
+      .social-links a {
+        min-height: 48px;
       }
     }
   </style>
@@ -1057,28 +962,35 @@
 <body>
   <!--
     QUICK EDIT GUIDE
-    1) Replace the kennel name, phone, email and WhatsApp links.
-    2) Replace placeholder photo blocks with real images when ready.
-    3) This file is fully static and safe to host on GitHub Pages.
-    4) For a real contact form on GitHub Pages, use Formspree / Basin / Getform.
+    1) Replace Shimone's phone, email, WhatsApp and area below.
+    2) Add image files to /images when ready.
+    3) Suggested filenames:
+       - images/hero.jpeg
+       - images/logo-debeer.png
+       - images/logo-chocolate-pups.png
+       - images/about-image.jpg
+       - images/border-collies.jpg
+       - images/australian-shepherds.jpg
+       - images/contact-image.jpg
+    4) This file is static and safe for GitHub Pages.
+    5) Please confirm the exact public wording for "K9-SA" before publishing if needed.
   -->
 
   <div class="header-wrap">
     <header class="header">
-      <a href="#top" class="brand" aria-label="Willow Ridge Border Collies home">
-        <strong>Willow Ridge</strong>
-        <span>Border Collies</span>
+      <a href="#top" class="brand" aria-label="DeBeer Collies and Chocolate Pups home">
+        <strong>DeBeer Collies &amp; Chocolate Pups</strong>
+        <span>Border Collies &amp; Australian Shepherds</span>
       </a>
 
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
 
       <nav class="nav" id="siteNav">
         <a href="#about">About</a>
-        <a href="#dogs">Our Dogs</a>
-        <a href="#litters">Litters</a>
-        <a href="#testimonials">Testimonials</a>
+        <a href="#border-collies">Border Collies</a>
+        <a href="#australian-shepherds">Australian Shepherds</a>
         <a href="#contact">Contact</a>
-        <a class="btn btn-secondary" href="https://wa.me/27000000000" target="_blank" rel="noreferrer">WhatsApp Us</a>
+        <a class="btn btn-secondary" href="https://wa.me/27747959025" target="_blank" rel="noreferrer">WhatsApp Us</a>
       </nav>
     </header>
   </div>
@@ -1087,25 +999,37 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <h1 class="section-title">Beautiful Border Collies, raised with care and intention.</h1>
+          <span class="eyebrow">South Africa based</span>
+          <h1 class="section-title">DeBeer Collies &amp; Chocolate Pups</h1>
           <p>
-            A soft, premium one-page site for a breeder who wants to share her story, introduce her dogs,
-            show upcoming litters, and make it easy for families to get in touch.
+            Shared breeding partnership, featuring Border Collies and Australian Shepherds,
+            raised with care, purpose, and attention to quality.
           </p>
 
           <div class="hero-actions">
-            <a href="#dogs" class="btn btn-primary">Meet Our Dogs</a>
-            <a href="#contact" class="btn btn-secondary">View Contact Details</a>
+            <a href="#border-collies" class="btn btn-primary">View Border Collies</a>
+            <a href="#australian-shepherds" class="btn btn-secondary">View Australian Shepherds</a>
           </div>
 
-
+          <div class="hero-badges">
+            <span>✓ All dogs KUSA registered</span>
+            <span>✓ Registered with K9-SA</span>
+          </div>
         </div>
 
         <div class="hero-visual reveal" aria-hidden="true">
-
           <div class="glass-card photo-card-main">
             <div class="photo-frame">
-              <img src="images/hero.jpeg" alt="Border Collie hero image">
+              <img
+                src="images/hero.jpeg"
+                alt="Main hero image"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+              >
+              <div class="image-placeholder" style="display:none;">
+                <div class="label">Main hero photo</div>
+                Add your hero image here
+                <small>Suggested file: images/hero.jpeg</small>
+              </div>
             </div>
           </div>
         </div>
@@ -1113,52 +1037,82 @@
 
       <div class="announcement" aria-label="Scrolling highlights">
         <div class="announcement-track">
-          <span>♥ Home raised puppies</span>
-          <span>♥ Health-focused breeding</span>
-          <span>♥ Border Collie families welcomed</span>
-          <span>♥ Located in South Africa</span>
-          <span>♥ Visits by appointment</span>
-          <span>♥ Loving, hands-on care</span>
-          <span>♥ Home raised puppies</span>
-          <span>♥ Health-focused breeding</span>
-          <span>♥ Border Collie families welcomed</span>
-          <span>♥ Located in South Africa</span>
-          <span>♥ Visits by appointment</span>
-          <span>♥ Loving, hands-on care</span>
+          <span>♥ Border Collies</span>
+          <span>♥ Australian Shepherds</span>
+          <span>♥ KUSA registered</span>
+          <span>♥ Registered with K9-SA</span>
+          <span>♥ Home-raised with care</span>
+          <span>♥ South Africa based</span>
+          <span>♥ Border Collies</span>
+          <span>♥ Australian Shepherds</span>
+          <span>♥ KUSA registered</span>
+          <span>♥ Registered with K9-SA</span>
+          <span>♥ Home-raised with care</span>
+          <span>♥ South Africa based</span>
+          <span>♥ Border Collies</span>
+          <span>♥ Australian Shepherds</span>
+          <span>♥ KUSA registered</span>
+          <span>♥ Registered with K9-SA</span>
+          <span>♥ Home-raised with care</span>
+          <span>♥ South Africa based</span>
+          <span>♥ Border Collies</span>
+          <span>♥ Australian Shepherds</span>
+          <span>♥ KUSA registered</span>
+          <span>♥ Registered with K9-SA</span>
+          <span>♥ Home-raised with care</span>
+          <span>♥ South Africa based</span>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="partnership">
       <div class="container">
-        <div class="gallery-grid reveal">
-          <article class="gallery-card">
-            <div>
-              <div class="number">01</div>
-              <p>Main hero image of your kennel, a puppy, or a family moment.</p>
+        <div class="reveal">
+          <span class="eyebrow">Our partnership</span>
+          <h2 class="section-title">Two names, one shared vision.</h2>
+          <p class="section-copy">
+            DeBeer Collies and Chocolate Pups work together to present a clean, trusted home for their dogs,
+            while still keeping each breed section easy to follow.
+          </p>
+        </div>
+
+        <div class="logos-grid">
+          <article class="logo-card reveal">
+            <div class="logo-frame">
+              <img
+                src="images/logo-debeer.jpeg"
+                alt="DeBeer Collies logo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+              >
+              <div class="image-placeholder" style="display:none; width:min(90%,320px); aspect-ratio:1/1;">
+                <div class="label">DeBeer Collies logo</div>
+                Add logo file here
+                <small>Suggested file: images/logo-debeer.png</small>
+              </div>
             </div>
-            <div aria-hidden="true">📸</div>
+            <h3>DeBeer Collies</h3>
+            <p>
+              Shimone’s side of the partnership, with a strong Border Collie focus and all enquiries handled through her contact details below.
+            </p>
           </article>
-          <article class="gallery-card">
-            <div>
-              <div class="number">02</div>
-              <p>Portrait of your stud dog with a calm, premium look.</p>
+
+          <article class="logo-card reveal">
+            <div class="logo-frame">
+              <img
+                src="images/logo-chocolate-pups.jpeg"
+                alt="Chocolate Pups logo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+              >
+              <div class="image-placeholder" style="display:none; width:min(90%,320px); aspect-ratio:1/1;">
+                <div class="label">Chocolate Pups logo</div>
+                Add logo file here
+                <small>Suggested file: images/logo-chocolate-pups.png</small>
+              </div>
             </div>
-            <div aria-hidden="true">🐕</div>
-          </article>
-          <article class="gallery-card">
-            <div>
-              <div class="number">03</div>
-              <p>Portrait of your female dog or a litter update image.</p>
-            </div>
-            <div aria-hidden="true">🌾</div>
-          </article>
-          <article class="gallery-card">
-            <div>
-              <div class="number">04</div>
-              <p>Soft lifestyle image for the contact or testimonial section.</p>
-            </div>
-            <div aria-hidden="true">✨</div>
+            <h3>Chocolate Pups</h3>
+            <p>
+              Tannie Desire’s side of the partnership, featuring Border Collies as well as Australian Shepherds.
+            </p>
           </article>
         </div>
       </div>
@@ -1168,281 +1122,339 @@
       <div class="container split-grid">
         <div class="visual-panel reveal" aria-hidden="true">
           <div class="photo-frame">
-            <div class="placeholder-dog">
-              <div class="label">Owner / kennel lifestyle image</div>
-              <svg viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="40" y="35" width="140" height="200" rx="50" fill="#F7EFE5" stroke="#B58B5A" stroke-width="4"/>
-                <circle cx="88" cy="110" r="8" fill="#23314A"/>
-                <circle cx="132" cy="110" r="8" fill="#23314A"/>
-                <path d="M88 155C103 170 117 170 132 155" stroke="#23314A" stroke-width="5" stroke-linecap="round"/>
-                <path d="M52 60C75 22 108 25 108 25C108 25 72 67 52 60Z" fill="#E8D6C0" stroke="#B58B5A" stroke-width="4"/>
-                <path d="M168 60C145 22 112 25 112 25C112 25 148 67 168 60Z" fill="#E8D6C0" stroke="#B58B5A" stroke-width="4"/>
-              </svg>
-              <div class="paw">🐾</div>
+            <img
+              src="images/about-image.jpg"
+              alt="About image"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+            >
+            <div class="image-placeholder" style="display:none;">
+              <div class="label">About / kennel image</div>
+              Add a lifestyle or kennel image here
+              <small>Suggested file: images/about-image.jpg</small>
             </div>
           </div>
         </div>
 
         <div class="info-panel reveal">
-          <span class="eyebrow">About the kennel</span>
-          <h2 class="section-title">A calm, trustworthy online home for her kennel.</h2>
+          <span class="eyebrow">About us</span>
+          <h2 class="section-title">A calm, trustworthy online home for both breeders.</h2>
           <p class="section-copy">
-            This section is where she can introduce herself, share how she raises her dogs, and explain the values behind her kennel.
-            The goal is to feel personal and warm without making the website busy or complicated.
+            This website introduces the partnership between Shimone and Tannie Desire, bringing their dogs together in one simple,
+            elegant space while still clearly separating the Border Collies and Australian Shepherds.
           </p>
 
           <ul>
-            <li><span class="tick">✓</span><span>Short personal story about the breeder and why she loves Border Collies.</span></li>
-            <li><span class="tick">✓</span><span>Simple explanation of health, care, temperament, and the home environment.</span></li>
-            <li><span class="tick">✓</span><span>Luxury, clean presentation that still remains easy to update later.</span></li>
+            <li><span class="tick">✓</span><span>Simple introduction to the breeders and the values behind their kennel partnership.</span></li>
+            <li><span class="tick">✓</span><span>Clear split between Border Collies and Australian Shepherds to keep the site easy to navigate.</span></li>
+            <li><span class="tick">✓</span><span>All enquiries kept in one place through Shimone’s contact details.</span></li>
           </ul>
 
-          <a href="#contact" class="btn btn-secondary" style="width: fit-content;">Ask About Available Puppies</a>
+          <a href="#contact" class="btn btn-secondary" style="width: fit-content;">Contact Shimone</a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="dogs">
+    <section class="section" id="choose-breed">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow">Male & female profiles</span>
-          <h2 class="section-title">Meet the dogs.</h2>
+          <span class="eyebrow">Choose your breed</span>
+          <h2 class="section-title">Two clear sections, kept simple.</h2>
           <p class="section-copy">
-            A clean card layout lets her showcase the main male and female dogs with photos, personality notes, and a few highlights.
-            This keeps the page elegant while still giving buyers the information they want.
+            To keep the website neat and easy to understand, each breed has its own dedicated section below.
           </p>
         </div>
 
-        <div class="dogs-grid">
-          <article class="dog-card reveal">
-            <div class="dog-photo">
-              <div class="photo-frame">
-                <div class="placeholder-dog">
-                  <div class="label">Male dog photo</div>
-                  <svg viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M70 86C70 57 88 38 110 38C132 38 150 57 150 86V148C150 184 132 210 110 210C88 210 70 184 70 148V86Z" fill="#F7EFE5" stroke="#B58B5A" stroke-width="4"/>
-                    <path d="M77 82L56 64" stroke="#B58B5A" stroke-width="10" stroke-linecap="round"/>
-                    <path d="M143 82L164 64" stroke="#B58B5A" stroke-width="10" stroke-linecap="round"/>
-                    <circle cx="92" cy="114" r="7" fill="#23314A"/>
-                    <circle cx="128" cy="114" r="7" fill="#23314A"/>
-                    <path d="M96 145H124C124 156 117 164 110 164C103 164 96 156 96 145Z" fill="#23314A" fill-opacity="0.12"/>
-                  </svg>
-                  <div class="paw">🐾</div>
-                </div>
-              </div>
-            </div>
-            <div class="dog-body">
-              <div class="dog-top">
-                <div>
-                  <h3>Atlas</h3>
-                  <p style="margin:.25rem 0 0;">Stud dog</p>
-                </div>
-                <span class="badge">Placeholder profile</span>
-              </div>
-              <p>
-                Use this card for the male dog’s name, age, colour, temperament, and any standout qualities you want to highlight.
-              </p>
-              <div class="dog-meta">
-                <div class="meta-chip">
-                  <span>Temperament</span>
-                  <strong>Confident & gentle</strong>
-                </div>
-                <div class="meta-chip">
-                  <span>Colour</span>
-                  <strong>Black & white</strong>
-                </div>
-                <div class="meta-chip">
-                  <span>Focus</span>
-                  <strong>Structure & drive</strong>
-                </div>
-                <div class="meta-chip">
-                  <span>Update</span>
-                  <strong>Add real details later</strong>
-                </div>
-              </div>
-            </div>
+        <div class="quick-grid">
+          <article class="quick-card reveal">
+            <h3>Border Collies</h3>
+            <p>
+              View the Border Collie section for breeder details, dog information, and Border Collie litter updates.
+            </p>
+            <a href="#border-collies" class="btn btn-secondary">Go to Border Collies</a>
           </article>
 
-          <article class="dog-card reveal">
-            <div class="dog-photo">
-              <div class="photo-frame">
-                <div class="placeholder-dog">
-                  <div class="label">Female dog photo</div>
-                  <svg viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M64 95C64 61 85 40 110 40C135 40 156 61 156 95V151C156 190 136 217 110 217C84 217 64 190 64 151V95Z" fill="#F7EFE5" stroke="#B58B5A" stroke-width="4"/>
-                    <circle cx="92" cy="116" r="7" fill="#23314A"/>
-                    <circle cx="128" cy="116" r="7" fill="#23314A"/>
-                    <path d="M99 145C104 151 116 151 121 145" stroke="#23314A" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M79 80L54 55" stroke="#B58B5A" stroke-width="10" stroke-linecap="round"/>
-                    <path d="M141 80L166 55" stroke="#B58B5A" stroke-width="10" stroke-linecap="round"/>
-                  </svg>
-                  <div class="paw">🐾</div>
-                </div>
-              </div>
-            </div>
-            <div class="dog-body">
-              <div class="dog-top">
-                <div>
-                  <h3>Willow</h3>
-                  <p style="margin:.25rem 0 0;">Female dog</p>
-                </div>
-                <span class="badge">Placeholder profile</span>
-              </div>
-              <p>
-                Use this space for the female dog’s background, personality, maternal traits, and any notes about health or lineage.
-              </p>
-              <div class="dog-meta">
-                <div class="meta-chip">
-                  <span>Temperament</span>
-                  <strong>Sweet & intelligent</strong>
-                </div>
-                <div class="meta-chip">
-                  <span>Colour</span>
-                  <strong>Black tri</strong>
-                </div>
-                <div class="meta-chip">
-                  <span>Focus</span>
-                  <strong>Calm family homes</strong>
-                </div>
-                <div class="meta-chip">
-                  <span>Update</span>
-                  <strong>Add real details later</strong>
-                </div>
-              </div>
-            </div>
+          <article class="quick-card reveal">
+            <h3>Australian Shepherds</h3>
+            <p>
+              View the Australian Shepherd section for dog information and litter details linked to Chocolate Pups.
+            </p>
+            <a href="#australian-shepherds" class="btn btn-secondary">Go to Australian Shepherds</a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="litters">
+    <section class="section breed-section" id="border-collies">
       <div class="container">
-        <div class="reveal">
-          <span class="eyebrow">Litters & process</span>
-          <h2 class="section-title">A simple section for current or upcoming litters.</h2>
+        <div class="section-head reveal">
+          <span class="eyebrow">Border Collies</span>
+          <h2 class="section-title">Border Collies</h2>
           <p class="section-copy">
-            This is perfect for sharing whether puppies are available, when the next litter is expected, and how interested families should get in touch.
+            This section brings together the Border Collies from DeBeer Collies and Chocolate Pups in one focused space,
+            keeping the breed details and litter updates together.
           </p>
         </div>
 
-        <div class="features-grid">
-          <article class="feature-card reveal" data-step="01">
-            <div class="feature-icon">🐾</div>
-            <h3>Current litter</h3>
-            <p>
-              Add a short update here, for example: “Puppies expected in July” or “Applications currently open for our next litter.”
-            </p>
-          </article>
-          <article class="feature-card reveal" data-step="02">
-            <div class="feature-icon">🏡</div>
-            <h3>Home environment</h3>
-            <p>
-              Mention that puppies are raised in a loving home, exposed to everyday life, and prepared for family homes.
-            </p>
-          </article>
-          <article class="feature-card reveal" data-step="03">
-            <div class="feature-icon">📩</div>
-            <h3>Reservation process</h3>
-            <p>
-              Keep this easy: interested buyers can WhatsApp, call, or email to ask about availability and the next steps.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="reveal">
-          <span class="eyebrow">Location</span>
-          <h2 class="section-title">Where the kennel is based.</h2>
-          <p class="section-copy">
-            Since she specifically wants the kennel or litter location shown, this section gives it a clear place without needing a complicated map embed.
-          </p>
-        </div>
-
-        <div class="location-grid">
-          <article class="location-card reveal">
-            <h3>Visit location</h3>
-            <p>
-              Replace this text with the real suburb, town, province, or a softer version of the location if she does not want to publish a full address.
-            </p>
-            <div class="contact-list">
-              <div class="contact-item">
-                <div class="icon">📍</div>
-                <div>
-                  <span>Based in</span>
-                  <strong>Replace with real town / area</strong>
-                </div>
-              </div>
-              <div class="contact-item">
-                <div class="icon">🕒</div>
-                <div>
-                  <span>Visits</span>
-                  <strong>By appointment only</strong>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="location-card reveal">
-            <div class="map-box">
+        <div class="breed-showcase">
+          <article class="breed-card breed-copy reveal">
+            <div class="breed-header">
               <div>
-                <div class="map-pin">📍</div>
-                <strong style="display:block; margin-bottom:.45rem; color:var(--text);">Optional map or location image</strong>
-                <div>Replace this box with a Google Maps embed later if needed, or keep it simple and elegant as-is.</div>
+                <h3>DeBeer Collies &amp; Chocolate Pups</h3>
+                <p>Shared Border Collie focus</p>
               </div>
+              <span class="badge">Breed section</span>
+            </div>
+
+            <p>
+              Use this space to describe the Border Collies, the type of homes they suit, and the care taken in raising them.
+              You can also mention whether this section includes dogs from both Shimone and Tannie Desire.
+            </p>
+
+            <div class="pill-row">
+              <span class="pill">KUSA registered</span>
+              <span class="pill">Registered with K9-SA</span>
+              <span class="pill">Enquiries through Shimone</span>
             </div>
           </article>
+
+          <div class="adult-dogs-grid">
+            <article class="mini-dog-card reveal">
+              <div class="mini-dog-photo">
+                <div class="photo-frame">
+                  <img
+                    src="images/border-male.jpeg"
+                    alt="Border Collie male"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+                  >
+                  <div class="image-placeholder" style="display:none;">
+                    <div class="label">Border Collie male</div>
+                    Add the male Border Collie photo here
+                    <small>Suggested file: images/border-male.jpg</small>
+                  </div>
+                </div>
+              </div>
+              <div class="mini-dog-body">
+                <div class="mini-dog-top">
+                  <div>
+                    <h3>Male</h3>
+                    <p>Stud dog</p>
+                  </div>
+                  <span class="badge">Border Collie</span>
+                </div>
+                <p>Add the male dog’s name and a short note here.</p>
+              </div>
+            </article>
+
+            <article class="mini-dog-card reveal">
+              <div class="mini-dog-photo">
+                <div class="photo-frame">
+                  <img
+                    src="images/border-female.jpg"
+                    alt="Border Collie female"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+                  >
+                  <div class="image-placeholder" style="display:none;">
+                    <div class="label">Border Collie female</div>
+                    Add the female Border Collie photo here
+                    <small>Suggested file: images/border-female.jpg</small>
+                  </div>
+                </div>
+              </div>
+              <div class="mini-dog-body">
+                <div class="mini-dog-top">
+                  <div>
+                    <h3>Female</h3>
+                    <p>Dam</p>
+                  </div>
+                  <span class="badge">Border Collie</span>
+                </div>
+                <p>Add the female dog’s name and a short note here.</p>
+              </div>
+            </article>
+          </div>
+
+          <article class="litter-feature reveal">
+            <div class="top-note">Next litter</div>
+            <h3>Border Collie litters</h3>
+            <p>
+              Unfortunately, no Border Collie Litters available at the time, please reach out in the contact section for upcoming litters!
+            </p>
+          </article>
+
+          <div class="puppy-grid">
+            <article class="puppy-card reveal">
+              <div class="puppy-photo">
+                <div class="photo-frame">
+                  <img
+                    src="images/border-puppies-1.jpeg"
+                    alt="Border Collie puppies"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+                  >
+                  <div class="image-placeholder" style="display:none;">
+                    <div class="label">Border Collie puppies</div>
+                    Add a puppy / litter photo here
+                    <small>Suggested file: images/border-puppies-1.jpg</small>
+                  </div>
+                </div>
+              </div>
+              <div class="puppy-caption">Border Collie litter photo</div>
+            </article>
+
+            <article class="puppy-card reveal">
+              <div class="puppy-photo">
+                <div class="photo-frame">
+                  <img
+                    src="images/border-puppies-2.jpeg"
+                    alt="Border Collie litter"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+                  >
+                  <div class="image-placeholder" style="display:none;">
+                    <div class="label">Border Collie litter</div>
+                    Add another puppy / litter photo here
+                    <small>Suggested file: images/border-puppies-2.jpg</small>
+                  </div>
+                </div>
+              </div>
+              <div class="puppy-caption">Available / upcoming puppies</div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="testimonials">
+    <section class="section breed-section" id="australian-shepherds">
       <div class="container">
-        <div class="reveal">
-          <span class="eyebrow">Optional social proof</span>
-          <h2 class="section-title">Testimonials from happy owners.</h2>
+        <div class="section-head reveal">
+          <span class="eyebrow">Australian Shepherds</span>
+          <h2 class="section-title">Australian Shepherds</h2>
           <p class="section-copy">
-            This slider is optional. If she already has feedback from past buyers, it gives the site a more established and trustworthy feel.
+            This section keeps the Australian Shepherds neatly separate from the Border Collies, while still forming part of the same website.
           </p>
         </div>
 
-        <div class="testimonial-wrap reveal">
-          <div class="testimonial-grid">
-            <div class="slider-btn-group">
-              <button class="slider-btn" id="prevSlide" aria-label="Previous testimonial">←</button>
+        <div class="breed-showcase">
+          <article class="breed-card breed-copy reveal">
+            <div class="breed-header">
+              <div>
+                <h3>Chocolate Pups</h3>
+                <p>Australian Shepherd section</p>
+              </div>
+              <span class="badge">Breed section</span>
             </div>
 
-            <div class="testimonial-slide" id="testimonialSlide">
-              <div class="testimonial-photo" aria-hidden="true">
-                <div class="placeholder-dog">
-                  <div class="label">Owner / puppy image</div>
-                  <svg viewBox="0 0 220 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <circle cx="110" cy="88" r="48" fill="#F7EFE5" stroke="#B58B5A" stroke-width="4"/>
-                    <rect x="64" y="142" width="92" height="66" rx="24" fill="#E8D6C0" stroke="#B58B5A" stroke-width="4"/>
-                    <circle cx="92" cy="88" r="6" fill="#23314A"/>
-                    <circle cx="128" cy="88" r="6" fill="#23314A"/>
-                    <path d="M96 109C101 115 119 115 124 109" stroke="#23314A" stroke-width="4" stroke-linecap="round"/>
-                  </svg>
-                  <div class="paw">🐾</div>
+            <p>
+              Use this area to introduce the Australian Shepherds, their temperament, and the type of homes they would suit best.
+              Since this breed sits under Chocolate Pups, that can be reflected here naturally.
+            </p>
+
+            <div class="pill-row">
+              <span class="pill">KUSA registered</span>
+              <span class="pill">Registered with K9-SA</span>
+              <span class="pill">Chocolate Pups</span>
+            </div>
+          </article>
+
+          <div class="adult-dogs-grid">
+            <article class="mini-dog-card reveal">
+              <div class="mini-dog-photo">
+                <div class="photo-frame">
+                  <img
+                    src="images/aussie-male.jpg"
+                    alt="Australian Shepherd male"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+                  >
+                  <div class="image-placeholder" style="display:none;">
+                    <div class="label">Australian Shepherd male</div>
+                    Add the male Australian Shepherd photo here
+                    <small>Suggested file: images/aussie-male.jpg</small>
+                  </div>
                 </div>
               </div>
-              <div class="testimonial-content">
-                <div class="quote-mark">“</div>
-                <p class="testimonial-quote" id="quoteText">
-                  We instantly felt how much care went into raising our puppy. The process was warm, personal, and reassuring from start to finish.
-                </p>
-                <p class="testimonial-name" id="quoteName">Sarah M.</p>
-                <p class="testimonial-role" id="quoteRole">Happy puppy owner</p>
+              <div class="mini-dog-body">
+                <div class="mini-dog-top">
+                  <div>
+                    <h3>Male</h3>
+                    <p>Stud dog</p>
+                  </div>
+                  <span class="badge">Australian Shepherd</span>
+                </div>
+                <p>Add the male dog’s name and a short note here.</p>
               </div>
-            </div>
+            </article>
 
-            <div class="slider-btn-group">
-              <button class="slider-btn" id="nextSlide" aria-label="Next testimonial">→</button>
-            </div>
+            <article class="mini-dog-card reveal">
+              <div class="mini-dog-photo">
+                <div class="photo-frame">
+                  <img
+                    src="images/aussie-female.jpg"
+                    alt="Australian Shepherd female"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+                  >
+                  <div class="image-placeholder" style="display:none;">
+                    <div class="label">Australian Shepherd female</div>
+                    Add the female Australian Shepherd photo here
+                    <small>Suggested file: images/aussie-female.jpg</small>
+                  </div>
+                </div>
+              </div>
+              <div class="mini-dog-body">
+                <div class="mini-dog-top">
+                  <div>
+                    <h3>Female</h3>
+                    <p>Dam</p>
+                  </div>
+                  <span class="badge">Australian Shepherd</span>
+                </div>
+                <p>Add the female dog’s name and a short note here.</p>
+              </div>
+            </article>
           </div>
-          <div class="slider-dots" id="sliderDots" aria-label="Testimonial navigation"></div>
+
+          <article class="litter-feature reveal">
+            <div class="top-note">Next litter</div>
+            <h3>Australian Shepherd litters</h3>
+            <p>
+              Litter expected 2026/05/01! 
+            </p>
+          </article>
+
+          <div class="puppy-grid">
+            <article class="puppy-card reveal">
+              <div class="puppy-photo">
+                <div class="photo-frame">
+                  <img
+                    src="images/aussie-puppies-1.png"
+                    alt="Australian Shepherd puppies"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+                  >
+                  <div class="image-placeholder" style="display:none;">
+                    <div class="label">Australian Shepherd puppies</div>
+                    Add a puppy / litter photo here
+                    <small>Suggested file: images/aussie-puppies-1.jpg</small>
+                  </div>
+                </div>
+              </div>
+              <div class="puppy-caption">Australian Shepherd litter photo</div>
+            </article>
+
+            <article class="puppy-card reveal">
+              <div class="puppy-photo">
+                <div class="photo-frame">
+                  <img
+                    src="images/aussie-puppies-2.png"
+                    alt="Australian Shepherd litter"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+                  >
+                  <div class="image-placeholder" style="display:none;">
+                    <div class="label">Australian Shepherd litter</div>
+                    Add another puppy / litter photo here
+                    <small>Suggested file: images/aussie-puppies-2.jpg</small>
+                  </div>
+                </div>
+              </div>
+              <div class="puppy-caption">Available / upcoming puppies</div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -1450,31 +1462,33 @@
     <section class="section" id="contact">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow">Phone, email & WhatsApp</span>
-          <h2 class="section-title">Contact section</h2>
+          <span class="eyebrow">Phone, email &amp; social links</span>
+          <h2 class="section-title">Contact Shimone</h2>
+          <p class="section-copy">
+            For all enquiries regarding Border Collies or Australian Shepherds, please contact Shimone directly.
+          </p>
         </div>
 
         <div class="contact-grid">
           <article class="visual-panel contact-image reveal" aria-hidden="true">
             <div class="photo-frame">
-
-              <div class="placeholder-dog">
-                <div class="label">Contact section image</div>
-                <svg viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M50 110C50 72 76 42 110 42C144 42 170 72 170 110V150C170 192 142 222 110 222C78 222 50 192 50 150V110Z" fill="#F7EFE5" stroke="#B58B5A" stroke-width="4"/>
-                  <circle cx="92" cy="116" r="7" fill="#23314A"/>
-                  <circle cx="128" cy="116" r="7" fill="#23314A"/>
-                  <path d="M100 144H120C120 152 116 158 110 158C104 158 100 152 100 144Z" fill="#23314A" fill-opacity="0.12"/>
-                </svg>
-                <div class="paw">🐾</div>
+              <img
+                src="images/contact-image.jpg"
+                alt="Contact section image"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+              >
+              <div class="image-placeholder" style="display:none;">
+                <div class="label">Contact image</div>
+                Add a contact image here
+                <small>Suggested file: images/contact-image.jpg</small>
               </div>
             </div>
           </article>
 
           <article class="contact-card reveal">
-            <h3>Contact Willow Ridge</h3>
+            <h3>Get in touch</h3>
             <p>
-              Swap the details below with the real phone number, email address, WhatsApp number, and social media links.
+              Replace the details below with Shimone’s real phone number, WhatsApp number, email address and area.
             </p>
 
             <div class="contact-list">
@@ -1482,9 +1496,10 @@
                 <div class="icon">📞</div>
                 <div>
                   <span>Phone</span>
-                  <strong>+27 00 000 0000</strong>
+                  <strong>+27 74 795 9025</strong>
                 </div>
               </div>
+
               <div class="contact-item">
                 <div class="icon">✉️</div>
                 <div>
@@ -1492,6 +1507,7 @@
                   <strong>hello@yourkennel.co.za</strong>
                 </div>
               </div>
+
               <div class="contact-item">
                 <div class="icon">📍</div>
                 <div>
@@ -1501,10 +1517,15 @@
               </div>
             </div>
 
-            <div class="hero-actions" style="margin-bottom:0;">
-              <a href="tel:+27000000000" class="btn btn-primary">Call Now</a>
+            <div class="contact-primary-actions">
+              <a href="tel:+27747959025" class="btn btn-primary">Call Now</a>
               <a href="mailto:hello@yourkennel.co.za" class="btn btn-secondary">Send Email</a>
-              <a href="https://wa.me/27000000000" target="_blank" rel="noreferrer" class="btn btn-secondary">WhatsApp</a>
+              <a href="https://wa.me/27747959025" target="_blank" rel="noreferrer" class="btn btn-secondary">WhatsApp</a>
+            </div>
+
+            <div class="contact-social-actions">
+              <a href="https://www.instagram.com/debeercollies?igsh=MXhoMW9raXltMTZtMg==" target="_blank" rel="noreferrer">Instagram</a>
+              <a href="https://www.facebook.com/share/1DcxaXDPdM/?mibextid=wwXIfr" target="_blank" rel="noreferrer">Facebook</a>
             </div>
           </article>
         </div>
@@ -1514,11 +1535,11 @@
 
   <footer class="footer">
     <div class="container footer-row">
-      <div>© <span id="year"></span> Willow Ridge Border Collies. All rights reserved.</div>
+      <div>© <span id="year"></span> DeBeer Collies &amp; Chocolate Pups. All rights reserved.</div>
       <nav>
         <a href="#about">About</a>
-        <a href="#dogs">Our Dogs</a>
-        <a href="#litters">Litters</a>
+        <a href="#border-collies">Border Collies</a>
+        <a href="#australian-shepherds">Australian Shepherds</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -1543,65 +1564,6 @@
     }
 
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    const testimonials = [
-      {
-        quote: 'We instantly felt how much care went into raising our puppy. The process was warm, personal, and reassuring from start to finish.',
-        name: 'Sarah M.',
-        role: 'Happy puppy owner'
-      },
-      {
-        quote: 'Our Border Collie settled in beautifully. We loved the clear communication, lovely updates, and the kindness behind the whole experience.',
-        name: 'Daniel & Carla',
-        role: 'New puppy family'
-      },
-      {
-        quote: 'The website made it easy to understand the kennel, the dogs, and how to make contact. It felt personal and trustworthy immediately.',
-        name: 'Michelle T.',
-        role: 'Enquiry turned owner'
-      }
-    ];
-
-    let currentTestimonial = 0;
-    const quoteText = document.getElementById('quoteText');
-    const quoteName = document.getElementById('quoteName');
-    const quoteRole = document.getElementById('quoteRole');
-    const dotsWrap = document.getElementById('sliderDots');
-
-    function renderDots() {
-      dotsWrap.innerHTML = '';
-      testimonials.forEach((_, index) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = index === currentTestimonial ? 'active' : '';
-        dot.setAttribute('aria-label', `Show testimonial ${index + 1}`);
-        dot.addEventListener('click', () => {
-          currentTestimonial = index;
-          renderTestimonial();
-        });
-        dotsWrap.appendChild(dot);
-      });
-    }
-
-    function renderTestimonial() {
-      const item = testimonials[currentTestimonial];
-      quoteText.textContent = item.quote;
-      quoteName.textContent = item.name;
-      quoteRole.textContent = item.role;
-      renderDots();
-    }
-
-    document.getElementById('prevSlide').addEventListener('click', () => {
-      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-      renderTestimonial();
-    });
-
-    document.getElementById('nextSlide').addEventListener('click', () => {
-      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-      renderTestimonial();
-    });
-
-    renderTestimonial();
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
